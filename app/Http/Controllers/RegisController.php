@@ -73,12 +73,12 @@ class RegisController extends Controller
             }
             $user->save();
             DB::commit();
-            return redirect('register')->with('success','เพิ่มข้อมูลผู้ใช้งาน เรียบร้อย!!');
+            return redirect('regisform')->with('success','เพิ่มข้อมูลผู้ใช้งาน เรียบร้อย!!');
         } catch (\Exception $e) {
             DB::rollback();
             // something went wrong
             dd($e);
-            return redirect('register')->with('error','ไม่สามารถเพิ่มข้อมูลผู้ใช้งาน!!');
+            return redirect('regisform')->with('error','ไม่สามารถเพิ่มข้อมูลผู้ใช้งาน!!');
         }
 
     }

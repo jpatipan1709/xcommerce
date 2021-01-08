@@ -16,7 +16,7 @@
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover" id="example">
+                        <table class="table table-bordered table-hover" id="table-user">
                             <thead>
                                <tr>
                                     <th>Name</th>
@@ -40,7 +40,12 @@
                                     <td>{{$item->gender_name}}</td>
                                     <td>{{implode(",",$social)}}</td>
                                     <td>
-                                        <img width="50%" class="img-fluid" src="{{asset('storage').'/'.$item->images}}" />
+                                        @if ($item->images != null)
+                                            <img width="50%" class="img-fluid" src="{{asset('storage').'/'.$item->images}}" />
+                                        @else 
+                                            -
+                                        @endif
+                                       
                                     </td>
                                  </tr>
                                 @endforeach
@@ -54,9 +59,5 @@
 </div>
 @endsection
 @section('js')
-<script>
-  $(document).ready(function() {
-    $('#example').DataTable();
-} );
-</script>
+
 @endsection

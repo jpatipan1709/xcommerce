@@ -16,7 +16,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
-                            <img class="img-fluid" src="{{asset('storage').'/'.$user->images}}" />
+                            @if ($user->images != null)
+                                <img class="img-fluid" src="{{asset('storage').'/'.$user->images}}" />
+                            @else 
+                            <div class="text-center">ไม่มีรูปภาพแสดง</div>
+                            @endif
                         </div>
                         <div class="col-6">
                             <div class="row">

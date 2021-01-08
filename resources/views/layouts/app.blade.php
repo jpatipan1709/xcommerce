@@ -41,7 +41,9 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                           
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('login') }}">{{ __('Login') }}</a>
+                        </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('regisform') }}">{{ __('Register') }}</a>
@@ -82,12 +84,16 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
 <script type="text/javascript" src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script  type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 <script  type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-
+<script>
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+  </script>
 @yield('js')
 </html>
