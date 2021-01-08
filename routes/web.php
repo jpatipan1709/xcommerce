@@ -23,4 +23,4 @@ Route::get('/regisform','RegisController@regisform');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/list','HomeController@show');
+Route::get('/list','HomeController@list');
