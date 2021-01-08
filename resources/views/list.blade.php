@@ -16,7 +16,7 @@
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover" id="myTable">
+                        <table class="table table-bordered table-hover" id="example">
                             <thead>
                                <tr>
                                     <th>Name</th>
@@ -24,20 +24,24 @@
                                     <th>E-mail</th>
                                     <th>Gender</th>
                                     <th>Social</th>
-                                    <th>Profile images</th>
+                                    <th width="15%">Profile images</th>
                                </tr>
                             </thead>
                             <tbody>
                                 @foreach ($user as $item)
+                                @php
+                                     $social = App\Social::WhereIn('socail_id',explode(",",$item->social))->get();
+                                     $social = $social->pluck('socail_name')->toArray();
+                                @endphp
                                  <tr>
-                                    <th>{{$item->firstname}} {{$item->lastname}}</th>
-                                    <th>{{age($item->birthday)}}</th>
-                                    <th>{{$item->email}}</th>
-                                    <th>{{$item->gender_name}}</th>
-                                    <th></th>
-                                    <th>
+                                    <td>{{$item->firstname}} {{$item->lastname}}</td>
+                                    <td>{{age($item->birthday)}}</td>
+                                    <td>{{$item->email}}</td>
+                                    <td>{{$item->gender_name}}</td>
+                                    <td>{{implode(",",$social)}}</td>
+                                    <td>
                                         <img width="50%" class="img-fluid" src="{{asset('storage').'/'.$item->images}}" />
-                                    </th>
+                                    </td>
                                  </tr>
                                 @endforeach
                             </tbody>
@@ -51,8 +55,8 @@
 @endsection
 @section('js')
 <script>
-    $(document).ready( function () {
-        $('#myTable').DataTable();
-    });
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
 </script>
 @endsection
